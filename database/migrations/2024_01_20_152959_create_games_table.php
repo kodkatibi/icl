@@ -14,7 +14,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('away_team_id');
             $table->foreign('away_team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->dateTime('game_date')->nullable();
-            $table->integer('week');
+            $table->integer('week')->nullable();
+            $table->unique(['home_team_id', 'away_team_id']);
             $table->softDeletes();
             $table->timestamps();
         });

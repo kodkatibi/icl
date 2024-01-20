@@ -12,4 +12,20 @@ class Team extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function homeGames()
+    {
+        return $this->hasMany(Game::class, 'home_team_id');
+    }
+
+    public function awayGames()
+    {
+        return $this->hasMany(Game::class, 'away_team_id');
+    }
+
+    public function standings()
+    {
+        return $this->hasMany(Standings::class);
+    }
+
 }

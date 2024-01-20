@@ -18,4 +18,9 @@ class Standings extends Model
         'sum_lose_match',
         'sum_draw_match',
     ];
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
 }

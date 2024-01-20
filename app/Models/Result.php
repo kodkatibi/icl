@@ -10,9 +10,14 @@ class Result extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'match_id',
+        'game_id',
         'home_team_score',
         'away_team_score',
         'winner_id',
     ];
+
+    public function match()
+    {
+        return $this->belongsTo(Game::class);
+    }
 }
