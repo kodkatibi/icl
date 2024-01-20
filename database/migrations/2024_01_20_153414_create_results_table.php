@@ -9,8 +9,8 @@ return new class extends Migration {
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('match_id');
-            $table->foreign('match_id')->references('id')->on('matches')->onDelete('cascade');
+            $table->unsignedBigInteger('game_id');
+            $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
             $table->unsignedTinyInteger('home_team_score');
             $table->unsignedTinyInteger('away_team_score');
             $table->unsignedBigInteger('winner_id')->nullable();
