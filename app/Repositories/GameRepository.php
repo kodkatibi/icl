@@ -9,12 +9,18 @@ class GameRepository implements IGameRepository
 
     public function get(array $select = ['*'])
     {
-        return Game::select($select)->with('homeTeam')->with('awayTeam')->get();
+        return Game::select($select)->with('homeTeam')->with('awayTeam')->with('result')->get();
     }
 
     public function getById(int $id, array $select = ['*'])
     {
-        return Game::select($select)->with('homeTeam')->with('awayTeam')->where('id', $id)->firstOrFail();
+        return Game::select($select)->with('homeTeam')->with('awayTeam')->with('result')
+            ->where('id', $id)->firstOrFail();
+    }
+
+    public function getByWeek(int $week, array $select = ['*'])
+    {
+        return Game::select($select)->with('homeTeam')->with('awayTeam')->with('result')->get();
     }
 
     public function create(array $request)

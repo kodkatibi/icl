@@ -10,6 +10,6 @@ interface IGameService
 
     public function playNextWeek(array $data);
 
-    public function playAllWeeks(array $data);
+    public function playAllWeeks();
 
 }

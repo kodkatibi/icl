@@ -29,4 +29,9 @@ class Game extends Model
     {
         return $this->belongsTo(Team::class, 'away_team_id');
     }
+
+    public function result()
+    {
+        return $this->hasOne(Result::class);
+    }
 }

@@ -53,6 +53,27 @@ abstract class AGameService implements IGameService
 
     }
 
+    public function playNextWeek(array $data)
+    {
+        $games = $data['games'] ?? $this->gameRepository->getByWeek($data['week']);
+
+        foreach ($games as $game) {
+            $gameResult = [
+                'home_team_score' => rand(0, 5),
+                'away_team_score' => rand(0, 5),
+            ];
+            $gameResult['winner_id'] = $gameResult['home_team_score'] > $gameResult['away_team_score'] ? $game->home_team_id : $game->away_team_id;
+            $gameResult['winner_id'] = $gameResult['home_team_score'] == $gameResult['away_team_score'] ? null : $gameResult['winner_id'];
+            $game->result()->create($gameResult);
+        }
+    }
+
+    public function playAllWeeks()
+    {
+        $games = $this->gameRepository->get();
+        $this->playNextWeek(['games' => $games]);
+    }
+
     private function initStandings($teams)
     {
         foreach ($teams as $team) {

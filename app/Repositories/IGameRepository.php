@@ -10,6 +10,8 @@ interface IGameRepository
 
     public function getById(int $id, array $select = ['*']);
 
+    public function getByWeek(int $week, array $select = ['*']);
+
     public function create(array $request);
 
     public function update(array $request, int $id);
