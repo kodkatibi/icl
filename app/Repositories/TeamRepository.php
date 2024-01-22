@@ -36,4 +36,9 @@ class TeamRepository implements ITeamRepository
     {
         return Team::select($select)->with('standings')->inRandomOrder()->limit($count)->get();
     }
+
+    public function getByIds(array $ids, array $select = ['*'])
+    {
+        return Team::select($select)->with('standings')->whereIn('id', $ids)->get();
+    }
 }
